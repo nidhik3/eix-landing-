@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EIX</title>
+  <link href="image/favicon.png" rel="icon" style="width: 20px;">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body class="font">
+  <!-- header -->
+  <header class="sec1 ">
+    <div class="banner center" style="height: 100vh; position: relative;">
+      <img src="image/bg.png" alt="Background" class="background desk" style="width: 100%; height: 100vh;">
+      <img src="image/bg-mob.jpg" alt="Background" class="background mob" style="width: 100%; height: 100vh;">
+      <img src="image/logo-w.png" alt="Logo" class="logo" style="width: 100%;">
+     <!-- <a  class="icon " href="#sec2" style="color: white;"> <i class="fa-solid fa-angle-down"></i></a> -->
+     <div class="d-flex justify-center" style="position: absolute; bottom:20px;">
+      <a   class="icon "  style="color:white;" href="#sec2"><i class="fa-solid fa-angle-down"></i></a>
+    </div>
+    </div>
+  </header>
+    <!-- header -->
+
+  <section class=" center fade-in-text" id="sec2">
+    <div >
+      <div class="center" style="position: relative;">
+        <div style="max-width:90%; text-align:left;">
+        <!-- <div class="container text-start"> -->
+          <div >
+            <img src="image/logo-b.png" class="b" alt="">
+          </div>
+          
+          <p class="middle  text1 mt-md-5 mt-3"  >
+            EIX is a private firm based in Abu Dhabi, specializes in investment and strategic advisory services.
+            With a focus on both local and global opportunities, we are committed to delivering innovative
+            solutions that drive growth and long-term impact.
+          </p>
+        </div>
+      
+        <div  style="position: absolute; bottom: 10px;">
+          <a   class="icon "  style="color: #2e3246;" href="#sec3"><i class="fa-solid fa-angle-down"></i></a>
+        </div>
+      </div>
+      
+      
+    </div>
+  </section>
+
+ <footer id="sec3" class="center normal fade-in-text" style="background-color:#2e3246; color: white;">
+    <div class="container py-md-5 ">
+      <div class="row text-center" style="font-weight: 300;">
+        <a href="mailto:info@eix-c.com" class="email-link">
+          <p class="m-0 text3">Contact us: info@eix-c.com</p>
+      </a>
+      <a href="mailto:career@eix-c.com" class="email-link">
+          <p class="text3">Career: career@eix-c.com</p>
+      </a>
+      
+      </div>
+      <div class="row text-center pt-md-4 text2">
+        <p class="mb-1 "> © 2024 EIX Consulting LLC.</p>
+        <p > Abu Dhabi. All rights reserved.</p>
+      </div>
+    </div>
+
+  </footer>
+
+  <script>
+    // Custom smooth scroll with initial slower speed
+    function smoothScroll(target, duration) {
+      const start = window.pageYOffset;
+      const targetPosition = target.getBoundingClientRect().top;
+      const targetOffset = targetPosition + start;
+      let startTime = null;
+
+      function scrollAnimation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, start, targetOffset - start, duration);
+        window.scrollTo(0, run);
+
+        if (timeElapsed < duration) {
+          requestAnimationFrame(scrollAnimation);
+        }
+      }
+
+      // Ease-in-out function for smooth scrolling
+      function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return (c / 2) * t * t + b;
+        t--;
+        return (-c / 2) * (t * (t - 2) - 1) + b;
+      }
+
+      requestAnimationFrame(scrollAnimation);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default anchor behavior
+
+        const targetID = this.getAttribute('href').substring(1); // Get target section ID
+        const targetElement = document.getElementById(targetID);
+
+        // Call the smooth scroll function with custom duration (1000ms)
+        smoothScroll(targetElement, 1000);
+      });
+    });
+  </script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const textElements = document.querySelectorAll(".fade-in-text");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+    textElements.forEach((el) => observer.observe(el));
+});
+
+  </script>
+
+</body>
+
+</html>
